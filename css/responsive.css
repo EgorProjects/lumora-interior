@@ -1,0 +1,122 @@
+/* ============================================
+   RESPONSIVE — mobile-first медиазапросы
+   Брейкпоинты: 480 / 768 / 1024 / 1280 px
+   ============================================ */
+
+/* ---------- ≥ 480px: крупные смартфоны ---------- */
+@media (min-width: 480px) {
+  .form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- ≥ 768px: планшеты ---------- */
+@media (min-width: 768px) {
+  /* Сетки становятся многоколоночными */
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonials__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .form__row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: start;
+  }
+
+  .footer__inner {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ---------- ≥ 1024px: ноутбуки, десктопная навигация ---------- */
+@media (min-width: 1024px) {
+  /* Бургер убирается полностью — работает обычное меню */
+  .burger {
+    display: none;
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .service-card {
+    padding: var(--spacing-md);
+  }
+
+  .about__grid {
+    gap: var(--spacing-xl);
+  }
+}
+
+/* ---------- < 1024px: мобильное меню ---------- */
+@media (max-width: 1023px) {
+  .burger {
+    display: flex;
+  }
+
+  /* Меню — выезжающая панель */
+  .nav {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    background-color: var(--color-cream);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--transition), transform var(--transition),
+                visibility var(--transition);
+    z-index: 105;
+  }
+
+  .nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav__list {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+
+  .nav__link {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+  }
+
+  /* Блокировка скролла при открытом меню */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+/* ---------- ≥ 1280px: широкие экраны ---------- */
+@media (min-width: 1280px) {
+  .hero__content {
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .services__grid {
+    gap: var(--spacing-lg);
+  }
+}
