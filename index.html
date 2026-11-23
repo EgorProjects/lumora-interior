@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
+  <!-- Skip link для клавиатурной навигации -->
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
 
   <!-- ===================== HEADER ===================== -->
   <header class="header" id="header">
@@ -54,7 +56,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="hero">
@@ -385,7 +387,7 @@
           </form>
 
           <!-- Сообщение об успешной отправке (демо) -->
-          <div class="form__success" id="form-success" hidden role="status">
+          <div class="form__success" id="form-success" hidden role="status" tabindex="-1">
             <h3>Заявка отправлена</h3>
             <p>Спасибо! Мы свяжемся с вами в ближайшее время.</p>
             <p class="form__success-note">Демо-режим: заявка не отправляется на сервер, обработка только на клиенте.</p>

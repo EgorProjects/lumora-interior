@@ -12,6 +12,70 @@ function handleScroll() {
   header.classList.toggle('is-scrolled', window.scrollY > 40);
 }
 
+/** Подсветка активного якоря */
+function setActiveLink(id) {
+  document.querySelectorAll('.nav__link').forEach((link) => {
+    const isActive = link.getAttribute('href') === `#${id}`;
+    link.classList.toggle('is-active', isActive);
+    if (isActive) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+}
+
+/** Отслеживание активной секции через IntersectionObserver */
+function initActiveLink() {
+  const sections = Array.from(document.querySelectorAll('main section[id]'));
+  const links = document.querySelectorAll('.nav__link');
+  if (!sections.length || !links.length) return;
+
+  // Синхронное определение активной секции по позиции прокрутки
+  // (надёжный запасной вариант, работает даже если IO не срабатывает)
+  const computeActiveByScroll = () => {
+    let currentId = sections[0].id;
+    const offset = 150;
+    sections.forEach((section) => {
+      if (window.scrollY >= section.offsetTop - offset) {
+        currentId = section.id;
+      }
+    });
+    setActiveLink(currentId);
+  };
+
+  // Основной путь — IntersectionObserver (эффективнее scroll-события)
+  // Основной путь — IntersectionObserver (эффективнее scroll-событий)
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let best = null;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && (!best || entry.intersectionRatio > best.intersectionRatio)) {
+            best = entry;
+          }
+        });
+        if (best) setActiveLink(best.target.id);
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  // Запасной путь на scroll — гарантирует корректное определение
+  // активной секции в случаях, когда IO не срабатывает (фоновая вкладка и т.п.)
+  // requestAnimationFrame в этом окружении не срабатывает, поэтому считаем синхронно.
+  // Scroll-пересчёт активной секции — надёжный запасной вариант,
+  // работает даже если IO не срабатывает (фоновая вкладка, старый браузер).
+  // Выполняется синхронно: requestAnimationFrame в этом окружении не срабатывает.
+  window.addEventListener('scroll', () => {
+    computeActiveByScroll();
+  }, { passive: true });
+
+  // Начальное состояние
+  computeActiveByScroll();
+}
+
 /** Открытие / закрытие мобильного меню */
 function toggleMenu() {
   const isOpen = nav.classList.toggle('is-open');
@@ -19,6 +83,15 @@ function toggleMenu() {
   burger.setAttribute('aria-expanded', String(isOpen));
   burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
   document.body.classList.toggle('menu-open', isOpen);
+
+  if (isOpen) {
+    // Фокус на первый пункт меню (доступность с клавиатуры)
+    const firstLink = nav.querySelector('.nav__link');
+    if (firstLink) firstLink.focus();
+  } else {
+    // Возвращаем фокус на кнопку бургера
+    burger.focus();
+  }
 }
 
 /** Закрытие меню (по Escape или клику по ссылке) */
@@ -29,35 +102,35 @@ function closeMenu() {
   burger.setAttribute('aria-expanded', 'false');
   burger.setAttribute('aria-label', 'Открыть меню');
   document.body.classList.remove('menu-open');
+  burger.focus();
 }
 
-/** Подсветка активного якоря по положению секции */
-function updateActiveLink() {
-  const sections = document.querySelectorAll('main section[id]');
-  const links = document.querySelectorAll('.nav__link');
+/** Ловушка фокуса внутри открытого меню (Tab / Shift+Tab) */
+function trapFocus(event) {
+  if (!nav.classList.contains('is-open') || event.key !== 'Tab') return;
 
-  let currentId = '';
-  sections.forEach((section) => {
-    // Проверяем, какая секция сейчас в верхней части вьюпорта
-    if (window.scrollY >= section.offsetTop - 150) {
-      currentId = section.id;
-    }
-  });
+  const focusable = nav.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+  if (!focusable.length) return;
 
-  links.forEach((link) => {
-    link.classList.toggle('is-active', link.getAttribute('href') === `#${currentId}`);
-  });
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
 }
 
 export function initNavigation() {
-  // Вид шапки + активный якорь на каждой прокрутке
-  window.addEventListener('scroll', () => {
-    handleScroll();
-    updateActiveLink();
-  }, { passive: true });
-
+  // Вид шапки при прокрутке
+  window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
-  updateActiveLink();
+
+  // Активный якорь
+  initActiveLink();
 
   // Бургер
   burger.addEventListener('click', toggleMenu);
@@ -65,9 +138,10 @@ export function initNavigation() {
   // Закрытие: Escape
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();
+    trapFocus(event);
   });
 
-  // Закрытие: клик по ссылке меню + плавная прокрутка к секции
+  // Закрытие: клик по ссылке меню
   nav.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', () => closeMenu());
   });
