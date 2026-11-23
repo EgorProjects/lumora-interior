@@ -30,7 +30,7 @@
 }
 
 .hero__eyebrow {
-  color: var(--color-accent);
+  color: var(--color-accent-light);
 }
 
 .hero__title {
@@ -198,6 +198,12 @@
 }
 
 /* ---------- TESTIMONIALS ---------- */
+/* На тёмном фоне акцент должен быть светлым — иначе контраст не проходит */
+.section--dark .section__eyebrow,
+.section--dark .section__title em {
+  color: var(--color-accent-light);
+}
+
 .testimonials__grid {
   grid-template-columns: minmax(0, 1fr);
 }
