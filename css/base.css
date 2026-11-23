@@ -8,9 +8,9 @@
   --color-beige:    #e8e0d5;   /* бежевый — блоки, карточки */
   --color-brown:    #3d2f26;   /* тёмно-коричневый — тёмные секции */
   --color-graphite: #2b2b2b;   /* графитовый — основной текст */
-  --color-accent:        #7a6347;   /* тёплый акцент на светлом фоне (WCAG AA) */
-  --color-accent-light:  #cbb08a;   /* тот же акцент, но светлый — для тёмных секций */
-  --color-muted:         #706860;   /* приглушённый — подписи (WCAG AA) */
+  --color-accent:       #7a6347;    /* тёплый акцент на светлом фоне (WCAG AA) */
+  --color-accent-light: #cbb08a;    /* тот же акцент, но светлый — для тёмных секций */
+  --color-muted:        #706860;    /* приглушённый — подписи (WCAG AA) */
   --color-white:    #ffffff;
   --color-error:    #b3402e;
   --color-success:  #4a7c59;
