@@ -58,7 +58,7 @@
     <section class="hero" id="hero">
       <div class="hero__content container reveal">
         <p class="hero__eyebrow">Студия дизайна интерьеров</p>
-        <h1 class="hero__title">Пространство,<br><em>которое отражает вас</em></h1>
+        <h1 class="hero__title">Пространство, <br><em>которое отражает вас</em></h1>
         <p class="hero__subtitle">
           Мы создаём современные жилые интерьеры, в которых сочетаются
           спокойствие, свет и продуманная до деталей функциональность.
@@ -66,11 +66,16 @@
         <a href="#contact" class="btn btn--primary">Обсудить проект</a>
       </div>
       <div class="hero__image-wrap">
-        <!-- Демо-плейсхолдер: заменить на фото интерьера -->
-        <div class="placeholder placeholder--hero" role="img"
-             aria-label="Фото премиального интерьера (временно не добавлено)">
-          <span class="placeholder__label">Фото интерьера</span>
-        </div>
+        <img class="hero__image"
+             src="assets/img/hero/hero-interior.jpg"
+             alt="Премиальный интерьер гостиной с натуральными материалами"
+             width="1600" height="1067" fetchpriority="high">
+      </div>
+
+      <!-- Мелкая техническая строка: заполняет нижнюю зону hero (приём референсов) -->
+      <div class="hero__meta container" aria-hidden="true">
+        <span>Жилые интерьеры · Москва</span>
+        <span>Est. 2019</span>
       </div>
     </section>
 
@@ -79,7 +84,7 @@
       <div class="container about__grid">
         <div class="about__text reveal">
           <p class="section__eyebrow">О студии</p>
-          <h2 class="section__title">Дизайн, в котором<br><em>вы чувствуете себя дома</em></h2>
+          <h2 class="section__title">Дизайн, в котором <br><em>вы чувствуете себя дома</em></h2>
           <p class="about__description">
             Lumora Interior — небольшая студия, команда которой верит: хороший интерьер
             начинается с внимания к человеку. Мы не следуем трендам ради трендов —
@@ -110,13 +115,32 @@
           </ul>
         </div>
         <figure class="about__image-wrap reveal">
-          <!-- Демо-плейсхолдер: заменить на фото рабочего процесса -->
-          <div class="placeholder placeholder--about" role="img"
-               aria-label="Фото рабочего процесса студии (временно не добавлено)">
-            <span class="placeholder__label">Рабочий процесс</span>
-          </div>
+          <img class="about__image"
+               src="assets/img/about/studio-process.jpg"
+               alt="Рабочий процесс студии: рабочее место дизайнера"
+               width="1200" height="800" loading="lazy">
         </figure>
       </div>
+
+      <!-- Статистика студии: заполняет пространство под гридом -->
+      <ul class="about__stats reveal">
+        <li class="about__stat">
+          <span class="about__stat-value">7 лет</span>
+          <span class="about__stat-label">на рынке дизайна</span>
+        </li>
+        <li class="about__stat">
+          <span class="about__stat-value">120+</span>
+          <span class="about__stat-label">завершённых проектов</span>
+        </li>
+        <li class="about__stat">
+          <span class="about__stat-value">14</span>
+          <span class="about__stat-label">специалистов в команде</span>
+        </li>
+        <li class="about__stat">
+          <span class="about__stat-value">98%</span>
+          <span class="about__stat-label">клиентов по рекомендации</span>
+        </li>
+      </ul>
     </section>
 
     <!-- ===================== SERVICES ===================== -->
@@ -183,10 +207,10 @@
         <div class="portfolio__grid">
           <article class="project-card reveal">
             <div class="project-card__image-wrap">
-              <div class="placeholder placeholder--p1" role="img"
-                   aria-label="Фото проекта «Тихая гавань» (временно не добавлено)">
-                <span class="placeholder__label">Проект 01</span>
-              </div>
+              <img class="project-card__image"
+                   src="assets/img/portfolio/project-01.jpg"
+                   alt="Интерьер квартиры «Тихая гавань»"
+                   width="1200" height="800" loading="lazy">
             </div>
             <div class="project-card__meta">
               <span class="project-card__type">Квартира</span>
@@ -197,10 +221,10 @@
 
           <article class="project-card reveal">
             <div class="project-card__image-wrap">
-              <div class="placeholder placeholder--p2" role="img"
-                   aria-label="Фото проекта «Северный свет» (временно не добавлено)">
-                <span class="placeholder__label">Проект 02</span>
-              </div>
+              <img class="project-card__image"
+                   src="assets/img/portfolio/project-02.jpg"
+                   alt="Интерьер загородного дома «Северный свет»"
+                   width="1200" height="800" loading="lazy">
             </div>
             <div class="project-card__meta">
               <span class="project-card__type">Загородный дом</span>
@@ -211,10 +235,10 @@
 
           <article class="project-card reveal">
             <div class="project-card__image-wrap">
-              <div class="placeholder placeholder--p3" role="img"
-                   aria-label="Фото проекта «Графит» (временно не добавлено)">
-                <span class="placeholder__label">Проект 03</span>
-              </div>
+              <img class="project-card__image"
+                   src="assets/img/portfolio/project-03.jpg"
+                   alt="Интерьер апартаментов «Графит»"
+                   width="1200" height="800" loading="lazy">
             </div>
             <div class="project-card__meta">
               <span class="project-card__type">Апартаменты</span>
@@ -225,10 +249,10 @@
 
           <article class="project-card reveal">
             <div class="project-card__image-wrap">
-              <div class="placeholder placeholder--p4" role="img"
-                   aria-label="Фото проекта «Тёплая глина» (временно не добавлено)">
-                <span class="placeholder__label">Проект 04</span>
-              </div>
+              <img class="project-card__image"
+                   src="assets/img/portfolio/project-04.jpg"
+                   alt="Интерьер дома «Тёплая глина»"
+                   width="1200" height="800" loading="lazy">
             </div>
             <div class="project-card__meta">
               <span class="project-card__type">Коттедж</span>
@@ -291,7 +315,7 @@
       <div class="container contact__grid">
         <div class="contact__intro reveal">
           <p class="section__eyebrow">Контакты</p>
-          <h2 class="section__title">Обсудим<br><em>ваш проект</em></h2>
+          <h2 class="section__title">Обсудим <br><em>ваш проект</em></h2>
           <p class="contact__description">
             Оставьте заявку — мы свяжемся с вами в течение рабочего дня,
             чтобы обсудить задачи и рассказать о следующих шагах.

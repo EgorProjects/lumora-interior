@@ -16,10 +16,10 @@
   scroll-margin-top: var(--header-height);
 }
 
-/* Шапка секции (заголовок + подпись) */
+/* Шапка секции (заголовок + подпись) — компактная */
 .section__header {
   max-width: 640px;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .section__title {
@@ -44,5 +44,6 @@
 .portfolio__grid,
 .testimonials__grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--spacing-md);
 }

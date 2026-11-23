@@ -19,20 +19,20 @@
   --font-body:    "Inter", Arial, sans-serif;
 
   /* --- Типографика (масштаб через clamp) --- */
-  --fs-h1:        clamp(2.5rem, 6vw, 5rem);
-  --fs-h2:        clamp(2rem, 4vw, 3.25rem);
-  --fs-h3:        clamp(1.25rem, 2vw, 1.5rem);
+  --fs-h1:        clamp(2.1rem, 6vw, 4.5rem);
+  --fs-h2:        clamp(1.75rem, 4vw, 3rem);
+  --fs-h3:        clamp(1.2rem, 2vw, 1.5rem);
   --fs-body:      clamp(1rem, 1.2vw, 1.125rem);
   --fs-small:     0.875rem;
   --fs-eyebrow:   0.75rem;
 
-  /* --- Отступы --- */
+  /* --- Отступы (компактные: минимализм) --- */
   --spacing-xs:   0.5rem;
   --spacing-sm:   1rem;
   --spacing-md:   1.5rem;
-  --spacing-lg:   2.5rem;
-  --spacing-xl:   4rem;
-  --section-pad:  clamp(4rem, 10vw, 7.5rem);
+  --spacing-lg:   2.25rem;
+  --spacing-xl:   3rem;
+  --section-pad:  clamp(3rem, 7vw, 5rem);
 
   /* --- Layout --- */
   --container-max: 1200px;
@@ -52,6 +52,14 @@ body {
   line-height: 1.65;
   color: var(--color-graphite);
   background-color: var(--color-cream);
+  /* Защита от случайной горизонтальной прокрутки на телефонах */
+  overflow-x: hidden;
+}
+
+/* Атрибут hidden должен побеждать любые display-стили компонентов
+   (иначе .form { display: flex } не даёт форме скрыться) */
+[hidden] {
+  display: none !important;
 }
 
 /* Заголовки — элегантный шрифт */
@@ -62,6 +70,8 @@ h1, h2, h3,
   font-weight: 400;
   line-height: 1.1;
   color: var(--color-brown);
+  /* Длинные слова не ломают вёрстку на узких экранах */
+  overflow-wrap: break-word;
 }
 
 /* Курсивный акцент внутри заголовков (приём референсов) */
@@ -81,7 +91,7 @@ h1 em, h2 em,
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--color-accent);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
 }
 
 /* Ссылки в тексте */
