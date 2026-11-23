@@ -45,7 +45,6 @@ function initActiveLink() {
   };
 
   // Основной путь — IntersectionObserver (эффективнее scroll-события)
-  // Основной путь — IntersectionObserver (эффективнее scroll-событий)
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -62,12 +61,9 @@ function initActiveLink() {
     sections.forEach((section) => observer.observe(section));
   }
 
-  // Запасной путь на scroll — гарантирует корректное определение
-  // активной секции в случаях, когда IO не срабатывает (фоновая вкладка и т.п.)
-  // requestAnimationFrame в этом окружении не срабатывает, поэтому считаем синхронно.
-  // Scroll-пересчёт активной секции — надёжный запасной вариант,
-  // работает даже если IO не срабатывает (фоновая вкладка, старый браузер).
-  // Выполняется синхронно: requestAnimationFrame в этом окружении не срабатывает.
+  // Запасной путь на scroll — гарантирует корректное определение активной
+  // секции, если IO не сработал (фоновая вкладка, старый браузер).
+  // Считаем синхронно: requestAnimationFrame здесь не срабатывает.
   window.addEventListener('scroll', () => {
     computeActiveByScroll();
   }, { passive: true });
