@@ -3,6 +3,8 @@
 Премиальный одностраничный сайт для студии дизайна интерьеров.
 Учебный проект: чистый frontend на **HTML5 + CSS3 + Vanilla JavaScript**, без фреймворков и сборщиков.
 
+**🔗 [Живое демо](https://egorprojects.github.io/lumora-interior/)** · **📦 [Репозиторий](https://github.com/EgorProjects/lumora-interior)**
+
 ---
 
 ## Как запускать
