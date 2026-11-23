@@ -30,10 +30,10 @@
   /* --- Отступы (компактные: минимализм) --- */
   --spacing-xs:   0.5rem;
   --spacing-sm:   1rem;
-  --spacing-md:   1.5rem;
-  --spacing-lg:   2.25rem;
-  --spacing-xl:   3rem;
-  --section-pad:  clamp(3rem, 7vw, 5rem);
+  --spacing-md:   1.25rem;
+  --spacing-lg:   1.75rem;
+  --spacing-xl:   2.25rem;
+  --section-pad:  clamp(2rem, 5vw, 3.25rem);
 
   /* --- Layout --- */
   --container-max: 1200px;

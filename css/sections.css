@@ -21,9 +21,9 @@
 .hero__content {
   position: relative;
   z-index: 2;
-  padding-block: var(--spacing-xl);
+  padding-block: var(--spacing-lg);
   /* Нижний запас под meta-строку hero */
-  padding-bottom: calc(var(--spacing-xl) + 2.5rem);
+  padding-bottom: calc(var(--spacing-lg) + 2rem);
   color: var(--color-cream);
   max-width: 900px;
   margin-inline: auto;
@@ -164,8 +164,8 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
   border-top: 1px solid rgba(61, 47, 38, 0.12);   /* тонкий хайрлайн */
 }
 
